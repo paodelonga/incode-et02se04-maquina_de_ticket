@@ -43,7 +43,6 @@ Que que ele tem? Ele tem:
 [>] Valor: R$ 20.00
 [>] Estado de pagamento: PENDENTE
 [>] Data de emissão: 00:00:00, 01/01/1970
-[>] Data de expedição: 00:00:00, 01/01/1970
 
 --------------------------------------------------
 
@@ -60,7 +59,6 @@ Que que ele tem? Ele tem:
 [>] Valor: R$ 20.00
 [>] Estado de pagamento: PENDENTE
 [>] Data de emissão: 00:00:00, 01/01/1970
-[>] Data de expedição: 00:00:00, 01/01/1970
 
 [1] Definir como pendente
 [2] Definir como pago
@@ -72,11 +70,51 @@ Que que ele tem? Ele tem:
 [<] Digite o identificador do ticket: ad2d
 
 [!] Não foi possível alterar o estado de pagamento
+[!] Nenhum ticket foi emitido pelo sistema 
+
+--------------------------------------------------
+
+[2.0]
+[<] Digite o identificador do ticket: ad2d
+
+[!] Não foi possível alterar o estado de pagamento
 [!] O ticket ad2d não foi encontrado no sistema
 
 ==================================================
 
+[2.1]
+[>] Estado de pagamento alterado com sucesso
+[>] Novo estado definido como: pendente
+
+--------------------------------------------------
+
+[2.1]
+[!] Estado de pagamento não alterado
+[!] O estado requisitado é o mesmo definido
+
+==================================================
+
+[2.2]
+[>] Estado de pagamento alterado com sucesso
+[>] Novo estado definido como: pago
+
+--------------------------------------------------
+
+[2.2]
+[!] Estado de pagamento não alterado
+[!] O estado requisitado é o mesmo definido
+
+==================================================
+
+[3.0]
+
+[>] Ao todo foram emitidos 213 tickets
+[>] gerando no total um saldo de R$ 3123
+
+==================================================
+
 [4.0]
+
 [>] (00:00:00, 01/01/1970)
   Emissão de ticket realizada com sucesso
 [>] (00:00:00, 01/01/1970)
