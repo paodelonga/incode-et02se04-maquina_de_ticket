@@ -57,15 +57,23 @@ public class Interface {
                 [!] Quantidade máxima de tickets emitidos"""
             );
             servico.reportarOperacao("""
-                Falha na tentativa de emitir o ticket
-                quantidade maxima de tickets emitidos"""
+                Falha na tentativa de emissão de ticket
+                A quantidade maxima de tickets foi alcançada."""
             );
         } else if (respostaEmitirTicket.getCodigo() == 1) {
             emitirTicket();
         } else if (respostaEmitirTicket.getCodigo() == 2) {
             exibirSeparador();
             System.out.println("[>] Ticket emitido com sucesso");
-            servico.reportarOperacao("Novo ticket emitido com sucesso");
+            servico.reportarOperacao(
+                String.format(
+                    """
+                        Sucesso na tentativa de emissão de ticket
+                        Um novo ticket de identificador %s foi emitido.
+                        """,
+                    respostaEmitirTicket.getObjeto().getIdentificador().getIdentificador()
+                )
+            );
             exibirEspacamento();
             StringBuilder informacao_ticket = new StringBuilder();
             if (respostaEmitirTicket.getObjeto().getIdentificador() != null) {
@@ -117,7 +125,7 @@ public class Interface {
             );
             servico.reportarOperacao("""
                 Falha na alteração do estado de pagamento
-                Nenhum ticket emitido foi pelo sistema"""
+                Nenhum ticket emitido foi pelo sistema."""
             );
         } else if (respostaObterTicket.getCodigo() == 1) {
             exibirEspacamento();
@@ -125,9 +133,12 @@ public class Interface {
                 [!] Não foi possível alterar o estado de pagamento
                 [!] O ticket não foi encontrado no sistema"""
             );
-            servico.reportarOperacao("""
-                Falha na alteração do estado de pagamento
-                O ticket não foi encontrado no sistema sistema"""
+            servico.reportarOperacao(
+                String.format("""
+                        Falha na alteração do estado de pagamento
+                        O ticket %s não foi encontrado no sistema sistema.""",
+                    identificador
+                )
             );
 
         } else if (respostaObterTicket.getCodigo() == 2) {
@@ -181,18 +192,25 @@ public class Interface {
                             exibirSeparador();
                             System.out.println("[>] Estado de pagamento alterado com sucesso");
                             System.out.println("[>] Novo estado definido como: pendente");
-                            servico.reportarOperacao("""
-                                Sucesso na alteração do estado de pagamento
-                                Novo estado definido como pendente"""
+                            servico.reportarOperacao(
+                                String.format("""
+                                        Sucesso na alteração do estado de pagamento
+                                        Novo estado do ticket %s definido como pendente.""",
+                                    identificador
+
+                                )
                             );
                             finalizar = true;
                         } else {
                             exibirSeparador();
                             System.out.println("[!] Estado de pagamento não alterado");
                             System.out.println("[!] O estado requisitado é o mesmo definido");
-                            servico.reportarOperacao("""
-                                Falha na alteração do estado de pagamento
-                                O estado requisitado é o mesmo definido"""
+                            servico.reportarOperacao(
+                                String.format("""
+                                        Falha na alteração do estado de pagamento
+                                        O estado atual do ticket %s é o mesmo requisitado.""",
+                                    identificador
+                                )
                             );
                             finalizar = true;
                         }
@@ -208,11 +226,8 @@ public class Interface {
                             servico.reportarOperacao(
                                 String.format("""
                                         Sucesso na alteração do estado de pagamento
-                                        Novo estado de pagamento para o ticket %s
-                                        definido como pago""",
-                                    respostaObterTicket.getObjeto()
-                                        .getIdentificador()
-                                        .getIdentificador()
+                                        Novo estado do ticket %s definido como pago.""",
+                                    identificador
                                 )
                             );
                             finalizar = true;
@@ -220,9 +235,13 @@ public class Interface {
                             exibirSeparador();
                             System.out.println("[!] Estado de pagamento não alterado");
                             System.out.println("[!] O estado requisitado é o mesmo definido");
-                            servico.reportarOperacao("""
-                                Falha na alteração do estado de pagamento
-                                O estado requisitado é o mesmo definido"""
+                            servico.reportarOperacao(
+                                String.format(
+                                    """
+                                        Falha na alteração do estado de pagamento
+                                        O estado atual do ticket %s é o mesmo requisitado.""",
+                                    identificador
+                                )
                             );
                             finalizar = true;
                         }
@@ -275,11 +294,9 @@ public class Interface {
         for (LocalDateTime operacao : servico.consultarHistoricoOperacoes().keySet()) {
             System.out.println(
                 String.format("""
-                    [>] (%s)
+                        [>] (%s)
                         %s""",
-                    operacao.format(
-                        DateTimeFormatter.ofPattern("hh:mm:ss, dd/MM/yyyy")
-                    ),
+                    operacao.format(DateTimeFormatter.ofPattern("hh:mm:ss, dd/MM/yyyy")),
                     servico.consultarHistoricoOperacoes().get(operacao)
                 )
             );
