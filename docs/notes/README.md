@@ -11,7 +11,7 @@
 
 ### Ticket
 
-Que que ele tem? Ele tem:
+Que que ele tem?
 
 - Identificador (String/Texto/UUID/Referencia)
   - UUID (time_mid)
