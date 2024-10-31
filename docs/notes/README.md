@@ -111,6 +111,11 @@ Que que ele tem? Ele tem:
 [>] Ao todo foram emitidos 213 tickets
 [>] gerando no total um saldo de R$ 3123
 
+--------------------------------------------------
+
+[!] Não foi possível consultar o saldo das operações
+[!] Nenhum ticket foi emitido pelo sistema
+
 ==================================================
 
 [4.0]
