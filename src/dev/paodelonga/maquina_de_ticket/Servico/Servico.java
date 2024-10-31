@@ -66,17 +66,30 @@ public class Servico {
             );
         }
 
+         if (repositorio.getListaTicketExpedido()
+            .stream()
+            .filter(t -> t.getEstadoPagamento() == EstadoPagamento.PAGO)
+            .findAny()
+            .isEmpty()
+        ) {
+            return new Resposta<Boolean, Integer, String, Float>(
+                false,
+                1,
+                "nenhum pago",
+                null
+           );
+        }
+
         return new Resposta<Boolean, Integer, String, Float>(
             true,
-            1,
-            "",
-            repositorio.getListaTicketExpedido()
-                .stream()
+            2,
+            "saldo calculado",
+            repositorio.getListaTicketExpedido().stream()
+                .filter(t -> t.getEstadoPagamento() == EstadoPagamento.PAGO)
                 .map(Ticket::getValor)
                 .reduce(Float::sum)
                 .get()
         );
-
     }
 
     public LinkedHashMap<LocalDateTime, String> consultarHistoricoOperacoes() {

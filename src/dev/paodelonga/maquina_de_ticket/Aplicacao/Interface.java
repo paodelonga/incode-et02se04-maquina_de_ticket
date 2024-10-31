@@ -249,14 +249,23 @@ public class Interface {
                 Falha ao consultar o saldo das operações
                 Nenhum ticket foi emitido pelo sistema"""
             );
-        } else {
+        } else if (respostaConsultarSaldoOperacoes.getCodigo() == 1) {
+            System.out.println("""
+                [!] Não foi possível consultar o saldo das operações
+                [!] Não existem tickets pagos no sistema"""
+            );
+            servico.reportarOperacao("""
+                Falha ao consultar o saldo das operações
+                Não existem tickets pagos no sistema"""
+            );
+        } else if (respostaConsultarSaldoOperacoes.getCodigo() == 2) {
             System.out.println(
                 String.format(
                     "[>] Ao todo foram arrecadados um total de R$ %.2f",
                     respostaConsultarSaldoOperacoes.getObjeto()
                 )
             );
-            servico.reportarOperacao("Sucesso ao consultar o saldo das operações");
+            servico.reportarOperacao("Sucesso ao consultar o saldo das operações.");
         }
     }
 
