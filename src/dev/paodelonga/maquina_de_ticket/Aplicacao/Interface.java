@@ -54,8 +54,7 @@ public class Interface {
             exibirSeparador();
             System.out.println("""
                 [!] Não foi possível emitir o ticket
-                [!] Quantidade máxima de tickets emitidos.
-                """
+                [!] Quantidade máxima de tickets emitidos."""
             );
             servico.reportarOperacao("""
                 Falha na tentativa de emissão de ticket
@@ -72,7 +71,10 @@ public class Interface {
                         Sucesso na tentativa de emissão de ticket
                         Um novo ticket de identificador %s foi emitido.
                         """,
-                    respostaEmitirTicket.getObjeto().getIdentificador().getIdentificador()
+                    respostaEmitirTicket
+                        .getObjeto()
+                        .getIdentificador()
+                        .getIdentificador()
                 )
             );
             exibirEspacamento();
@@ -122,8 +124,7 @@ public class Interface {
             exibirEspacamento();
             System.out.println("""
                 [!] Não foi possível alterar o estado de pagamento
-                [!] Nenhum ticket foi emitido pelo sistema.
-                """
+                [!] Nenhum ticket foi emitido pelo sistema."""
             );
             servico.reportarOperacao("""
                 Falha na alteração do estado de pagamento
@@ -134,14 +135,12 @@ public class Interface {
             exibirEspacamento();
             System.out.println("""
                 [!] Não foi possível alterar o estado de pagamento
-                [!] O ticket não foi encontrado no sistema.
-                """
+                [!] O ticket não foi encontrado no sistema."""
             );
             servico.reportarOperacao(
                 String.format("""
                         Falha na alteração do estado de pagamento
-                        O ticket %s não foi encontrado no sistema sistema.
-                        """,
+                        O ticket %s não foi encontrado no sistema sistema.""",
                     identificador
                 )
             );
@@ -195,8 +194,8 @@ public class Interface {
                             EstadoPagamento.PENDENTE
                         ).getCodigo() == 1) {
                             exibirSeparador();
-                            System.out.println("[>] Estado de pagamento alterado com sucesso");
                             System.out.println("[>] Novo estado definido como: pendente");
+                            System.out.println("[>] Estado de pagamento alterado com sucesso.");
                             servico.reportarOperacao(
                                 String.format("""
                                         Sucesso na alteração do estado de pagamento
@@ -209,8 +208,8 @@ public class Interface {
                             finalizar = true;
                         } else {
                             exibirSeparador();
-                            System.out.println("[!] Estado de pagamento não alterado");
                             System.out.println("[!] O estado requisitado é o mesmo definido");
+                            System.out.println("[!] Estado de pagamento não alterado.");
                             servico.reportarOperacao(
                                 String.format("""
                                         Falha na alteração do estado de pagamento
@@ -228,8 +227,8 @@ public class Interface {
                             EstadoPagamento.PAGO
                         ).getCodigo() == 1) {
                             exibirSeparador();
-                            System.out.println("[>] Estado de pagamento alterado com sucesso");
                             System.out.println("[>] Novo estado definido como: pago");
+                            System.out.println("[>] Estado de pagamento alterado com sucesso.");
                             servico.reportarOperacao(
                                 String.format("""
                                         Sucesso na alteração do estado de pagamento
@@ -241,8 +240,8 @@ public class Interface {
                             finalizar = true;
                         } else {
                             exibirSeparador();
-                            System.out.println("[!] Estado de pagamento não alterado");
                             System.out.println("[!] O estado requisitado é o mesmo definido");
+                            System.out.println("[!] Estado de pagamento não alterado.");
                             servico.reportarOperacao(
                                 String.format("""
                                         Falha na alteração do estado de pagamento
@@ -268,31 +267,25 @@ public class Interface {
         respostaConsultarSaldoOperacoes = servico.consultarSaldoOperacoes();
 
         if (respostaConsultarSaldoOperacoes.getCodigo() == 0) {
-            System.out.println("""
-                [!] Não foi possível consultar o saldo das operações
-                [!] Nenhum ticket foi emitido pelo sistema
-                """
-            );
+            System.out.println("[!] Nenhum ticket foi emitido pelo sistema");
+            System.out.println("[!] Não foi possível consultar o saldo das operações.");
             servico.reportarOperacao("""
                 Falha ao consultar o saldo das operações
                 Nenhum ticket foi emitido pelo sistema
                 """
             );
         } else if (respostaConsultarSaldoOperacoes.getCodigo() == 1) {
-            System.out.println("""
-                [!] Não foi possível consultar o saldo das operações
-                [!] Não existem tickets pagos no sistema
-                """
-            );
+            System.out.println("[!] Não existem tickets pagos no sistema");
+            System.out.println("[!] Não foi possível consultar o saldo das operações.");
             servico.reportarOperacao("""
                 Falha ao consultar o saldo das operações
-                Não existem tickets pagos no sistema
+                Não existem tickets pagos no sistema.
                 """
             );
         } else if (respostaConsultarSaldoOperacoes.getCodigo() == 2) {
             System.out.println(
                 String.format(
-                    "[>] Ao todo foram arrecadados um total de R$ %.2f",
+                    "[>] Ao todo foram arrecadados um total de R$ %.2f.",
                     respostaConsultarSaldoOperacoes.getObjeto()
                 )
             );
@@ -343,7 +336,7 @@ public class Interface {
                     break;
                 default:
                     exibirSeparador();
-                    System.out.println("[!] Uma operação inexistente foi selecionada");
+                    System.out.println("[!] Uma operação inexistente foi selecionada.");
                     break;
             }
         }
