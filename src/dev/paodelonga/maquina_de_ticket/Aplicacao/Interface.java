@@ -65,7 +65,15 @@ public class Interface {
             emitirTicket();
         } else if (respostaEmitirTicket.getCodigo() == 2) {
             exibirSeparador();
-            System.out.println("[>] Ticket emitido com sucesso");
+            System.out.println(
+                String.format(
+                    "[>] Ticket %s emitido com sucesso.",
+                    respostaEmitirTicket
+                        .getObjeto()
+                        .getIdentificador()
+                        .getIdentificador()
+                )
+            );
             servico.reportarOperacao(
                 String.format("""
                         Sucesso na tentativa de emissão de ticket
