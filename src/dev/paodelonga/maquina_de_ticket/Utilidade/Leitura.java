@@ -9,7 +9,7 @@ public class Leitura {
         String entradaLeitor = leitorEntrada.nextLine();
 
         while (entradaLeitor.isBlank()) {
-            System.out.print("[ERRO]: Entrada inválida, a entrada não pode ser vazia. ");
+            System.out.print("[!]: Entrada inválida, a entrada não pode ser vazia. ");
             entradaLeitor = leitorEntrada.nextLine();
 
             if (!entradaLeitor.isBlank()) {
@@ -20,7 +20,7 @@ public class Leitura {
         try {
             return Integer.parseInt(entradaLeitor);
         } catch (NumberFormatException e) {
-            System.out.print("[ERRO]: Entrada inválida, insira um número inteiro. ");
+            System.out.print("[!]: Entrada inválida, insira um número inteiro. ");
             leitorEntrada.reset();
             return lerInteiro();
         }
@@ -31,7 +31,7 @@ public class Leitura {
         String entradaLeitor = leitorEntrada.nextLine();
 
         while (entradaLeitor.isBlank()) {
-            System.out.print("[ERRO]: Entrada inválida, a entrada não pode ser vazia. ");
+            System.out.print("[!]: Entrada inválida, a entrada não pode ser vazia. ");
             entradaLeitor = leitorEntrada.nextLine();
 
             if (!entradaLeitor.isBlank()) {
@@ -42,7 +42,7 @@ public class Leitura {
         try {
             return Float.parseFloat(entradaLeitor);
         } catch (NumberFormatException e) {
-            System.out.print("[ERRO]: Entrada inválida, insira um número delimitado por pontos. ");
+            System.out.print("[!]: Entrada inválida, insira um número delimitado por pontos. ");
             leitorEntrada.reset();
             return lerFloat();
         }
@@ -53,7 +53,7 @@ public class Leitura {
         String entradaLeitor = leitorEntrada.nextLine();
 
         while (entradaLeitor.isBlank()) {
-            System.out.print("ERRO: Entrada inválida, a entrada não pode ser vazia. ");
+            System.out.print("[!]: Entrada inválida, a entrada não pode ser vazia. ");
             entradaLeitor = leitorEntrada.nextLine();
 
             if (!entradaLeitor.isBlank()) {
